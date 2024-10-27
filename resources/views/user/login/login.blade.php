@@ -38,8 +38,8 @@
         @endif
 		<form action="{{ route('auth') }}" method="post">
             @csrf
-			<input type="email" Name="username" placeholder="EMAIL" required="">
-			<input type="password" Name="password" placeholder="PASSWORD" required="">
+			<input type="email" name="username" placeholder="EMAIL" required="">
+			<input type="password" name="password" placeholder="PASSWORD" required="">
 			<ul class="agileinfotickwthree">
 				<li>
 					<input type="checkbox" id="brand1" value="">
@@ -70,6 +70,12 @@
 						</div>
                         <div class="form-sub-w3ls">
 							<input placeholder="Name" name="name" class="mail" type="text" required="">
+							<div class="icon-agile">
+								<i class="fa fa-envelope-o" aria-hidden="true"></i>
+							</div>
+						</div>
+                        <div class="form-sub-w3ls">
+							<input placeholder="PhoneNumber" name="phone" class="mail" type="text" required="">
 							<div class="icon-agile">
 								<i class="fa fa-envelope-o" aria-hidden="true"></i>
 							</div>

@@ -9,4 +9,4 @@ Route::get('/', [HomeController::class, 'index'])->name('index');
 // login
 Route::get('/login-a', [UserController::class, 'login_a'])->name('login');
 Route::post('/auth', [UserController::class, 'auth'])->name('auth');
-Route::post('/register', [UserController::class], 'register')->name('register');
+Route::post('/register', [UserController::class, 'register_user'])->name('register');
