@@ -14,22 +14,33 @@ class UserController extends Controller
     {
         return view('user.login.login');
     }
+    public function login_b()
+    {
+        return view('user.login.register');
+    }
+    public function list(){
+        $users = User::all();
+        return view('admin.users.list',
+            [
+                'all_users' => $users,
+            ]
+        );
+    }
     public function auth(Request $request)
     {
         $email = $request->input('username');
-        $password = $request->input('password'); // Không băm ở đây
+        $password = $request->input('password');
         $user = User::where('email', $email)->first();
 
         if ($user) {
-            // Sử dụng Hash::check để kiểm tra mật khẩu
             if (Hash::check($password, $user->password)) {
                 Auth::login($user);
                 $request->session()->put('user', $user);
 
                 if ($user->roles != 1) {
-                    return redirect()->route('admin.index'); // Chuyển tới trang admin
+                    return redirect()->route('admin.pages.index');
                 } else {
-                    return redirect()->route('index'); // Chuyển tới trang user
+                    return redirect()->route('index');
                 }
             } else {
                 return redirect()->back()->with('error', 'Sai mật khẩu');
@@ -69,10 +80,16 @@ class UserController extends Controller
     public function logout(Request $request)
     {
         Auth::logout();
-        $request->session()->flush(); // Xóa tất cả session
+        $request->session()->flush();
         return redirect()->route('login');
     }
-    public function edit($id) {}
+    public function edit($id) {
+        $user = User::find($id)->get();
+        return view('admin.users.form',[
+            'user' => $user,
+        ]);
+    }
     public function store($id) {}
     public function delete($id) {}
+
 }

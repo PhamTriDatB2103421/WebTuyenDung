@@ -49,60 +49,12 @@
 			</ul>
 			<div class="aitssendbuttonw3ls">
 				<input type="submit" value="LOGIN">
-				<p> To register new account <span>→</span> <a class="w3_play_icon1" href="#small-dialog1"> Click Here</a></p>
+				<p> To register new account <span>→</span> <a  href="{{ route('register_a') }}"> Click Here</a></p>
 				<div class="clear"></div>
 			</div>
 		</form>
 	</div>
 
-	<!-- for register popup -->
-	<div id="small-dialog1" class="mfp-hide">
-		<div class="contact-form1">
-			<div class="contact-w3-agileits">
-				<h3>Register Form</h3>
-				<form action="{{ route('register') }}" method="post">
-                    @csrf
-						<div class="form-sub-w3ls">
-							<input placeholder="Email" name="email" class="mail" type="email" required="">
-							<div class="icon-agile">
-								<i class="fa fa-envelope-o" aria-hidden="true"></i>
-							</div>
-						</div>
-                        <div class="form-sub-w3ls">
-							<input placeholder="Name" name="name" class="mail" type="text" required="">
-							<div class="icon-agile">
-								<i class="fa fa-envelope-o" aria-hidden="true"></i>
-							</div>
-						</div>
-                        <div class="form-sub-w3ls">
-							<input placeholder="PhoneNumber" name="phone" class="mail" type="text" required="">
-							<div class="icon-agile">
-								<i class="fa fa-envelope-o" aria-hidden="true"></i>
-							</div>
-						</div>
-						<div class="form-sub-w3ls">
-							<input placeholder="Password"  type="password" required="">
-							<div class="icon-agile">
-								<i class="fa fa-unlock-alt" aria-hidden="true"></i>
-							</div>
-						</div>
-						<div class="form-sub-w3ls">
-							<input placeholder="Confirm Password" name="password" type="password" required="">
-							<div class="icon-agile">
-								<i class="fa fa-unlock-alt" aria-hidden="true"></i>
-							</div>
-						</div>
-					<div class="login-check">
-						 <label class="checkbox"><input type="checkbox" name="checkbox" checked="">I Accept Terms & Conditions</label>
-					</div>
-					<div class="submit-w3l">
-						<input type="submit" value="Register">
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-	<!-- //for register popup -->
 
 	<div class="w3footeragile">
 		<p> &copy; 2017 Existing Login Form. All Rights Reserved | Design by <a href="http://w3layouts.com" target="_blank">W3layouts</a></p>
@@ -130,7 +82,9 @@
 
 		});
 	</script>
+    <script>
 
+    </script>
 </body>
 <!-- //Body -->
 

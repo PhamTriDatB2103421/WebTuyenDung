@@ -250,6 +250,7 @@ input[type="submit"]:hover {
     padding: 60px 40px;
     background: #537b35;
 }
+
 #small-dialog, #small-dialog1, #small-dialog2 {
     max-width: 555px;
 }
@@ -521,7 +522,7 @@ input[type="checkbox"] {
 		font-weight: 500;
 		padding: 6px 5px;
 	}
-	
+
 	.w3footeragile p {
 		letter-spacing: 0px;
 	}
