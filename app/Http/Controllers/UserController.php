@@ -91,5 +91,4 @@ class UserController extends Controller
     }
     public function store($id) {}
     public function delete($id) {}
-
 }
