@@ -84,11 +84,62 @@ class UserController extends Controller
         return redirect()->route('login');
     }
     public function edit($id) {
-        $user = User::find($id)->get();
+        $user = User::find($id);
         return view('admin.users.form',[
             'user' => $user,
         ]);
     }
-    public function store($id) {}
-    public function delete($id) {}
+    public function store(Request $request) {
+        $request->validate([
+            'username' => 'required|string|max:255|unique:users',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8',
+            'fullname' => 'required|string|max:255',
+            'phone' => 'nullable|string|max:15',
+            'role' => 'required|in:admin,user',
+        ]);
+
+        // Tạo mới người dùng
+        User::create([
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'hoten' => $request->fullname,
+            'sodienthoai' => $request->phone,
+            'roles' => $request->role,
+        ]);
+
+        return redirect()->back()->with('message', 'Thêm mới người dùng thành công!');
+    }
+    public function update(Request $request, $id){
+        $request->validate([
+            'username' => 'required|string|max:255|unique:users,username,' . $id,
+            'email' => 'required|string|email|max:255|unique:users,email,' . $id,
+            'password' => 'nullable|string|min:8',
+            'fullname' => 'required|string|max:255',
+            'phone' => 'nullable|string|max:15',
+            'role' => 'required|in:admin,user',
+        ]);
+
+        $user = User::findOrFail($id);
+        $user->username = $request->username;
+        $user->email = $request->email;
+
+        if ($request->filled('password')) {
+            $user->password = Hash::make($request->password);
+        }
+
+        $user->hoten = $request->fullname;
+        $user->sodienthoai = $request->phone;
+        $user->roles = $request->role;
+        $user->save();
+
+        return redirect()->back()->with('message', 'Cập nhật người dùng thành công!');
+
+    }
+    public function delete($id) {
+        $user = User::find($id);
+        $user->delete();
+        return redirect()->back()->with('message', 'Đã xóa thành công');
+    }
 }
