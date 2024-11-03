@@ -1,7 +1,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('admin.pages.index') }}">
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
@@ -13,7 +13,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{ route('admin.pages.index') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Điều khiển</span></a>
     </li>
@@ -63,8 +63,7 @@
             <i class="fa fa-tags" aria-hidden="true"></i>
             <span>Vị trí tuyển dụng</span>
         </a>
-        <div id="collapseViTri" class="collapse" aria-labelledby="headingViTri"
-            data-parent="#accordionSidebar">
+        <div id="collapseViTri" class="collapse" aria-labelledby="headingViTri" data-parent="#accordionSidebar">
             <div class="py-2 bg-white rounded collapse-inner">
                 <h6 class="collapse-header">Quản lý Vị trí tuyển dụng</h6>
                 <a class="collapse-item" href="{{ route('admin.vitri.list') }}">Danh sách Vị trí tuyển dụng</a>

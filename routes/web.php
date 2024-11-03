@@ -13,6 +13,9 @@ Route::get('/login-a', [UserController::class, 'login_a'])->name('login');
 Route::get('/login-b', [UserController::class, 'login_b'])->name('register_a');
 Route::post('/auth', [UserController::class, 'auth'])->name('auth');
 Route::post('/register', [UserController::class, 'register_user'])->name('register');
+Route::get('/logout', [UserController::class, 'logout'])->name('logout');
+
+Route::get('/user/profile/{id}', [UserController::class , 'profile'])->name('user.profile');
 
 Route::middleware(['admin'])->prefix('admin')->group(function () {
     Route::get('index', function () {

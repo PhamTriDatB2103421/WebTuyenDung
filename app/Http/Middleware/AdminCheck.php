@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Middleware;
 
 use Closure;
@@ -15,12 +14,11 @@ class AdminCheck
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $role = $request->session()->get('user');
         $user = $request->user();
-        // Kiểm tra nếu người dùng không đăng nhập hoặc không có vai trò là admin
-        if ($user && $user->roles !== 2) {
 
-            abort(403, $role);
+        // Kiểm tra nếu người dùng không đăng nhập hoặc không có vai trò là admin
+        if (!$user || $user->roles !== 2) {
+            return redirect()->route('login')->with('error', 'Bạn không có quyền truy cập.');
         }
 
         return $next($request);

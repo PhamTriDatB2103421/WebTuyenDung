@@ -22,7 +22,7 @@ class UserController extends Controller
     {
         $users = User::all();
         return view(
-            'admin.users.list',
+            'admin.pages.users.list',
             [
                 'all_users' => $users,
             ]
@@ -30,20 +30,19 @@ class UserController extends Controller
     }
     public function auth(Request $request)
     {
+        // Xác thực dữ liệu đầu vào
+        $request->validate([
+            'username' => 'required|email',
+            'password' => 'required|string|min:6',
+        ]);
+
         $email = $request->input('username');
-        $password = $request->input('password');
         $user = User::where('email', $email)->first();
 
         if ($user) {
-            if (Hash::check($password, $user->password)) {
+            if (Hash::check($request->input('password'), $user->password)) {
                 Auth::login($user);
-                $request->session()->put('user', $user);
-
-                if ($user->roles != 1) {
-                    return redirect()->route('admin.pages.index');
-                } else {
-                    return redirect()->route('index');
-                }
+                return redirect()->route($user->roles == 2 ? 'admin.pages.index' : 'index');
             } else {
                 return redirect()->back()->with('error', 'Sai mật khẩu');
             }
@@ -51,6 +50,7 @@ class UserController extends Controller
             return redirect()->back()->with('error', 'Tài khoản không tồn tại');
         }
     }
+
 
     public function register_user(Request $request)
     {
@@ -78,13 +78,18 @@ class UserController extends Controller
             return redirect()->back()->with('error', 'Tài khoản đã tồn tại');
         }
     }
+    public function profile($id){
+
+    }
 
     public function logout(Request $request)
     {
         Auth::logout();
-        $request->session()->flush();
-        return redirect()->route('login');
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('login')->with('message', 'Bạn đã đăng xuất thành công.');
     }
+
     public function edit($id)
     {
         $user = User::find($id);

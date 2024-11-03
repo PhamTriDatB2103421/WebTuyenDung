@@ -10,14 +10,25 @@
             <li><a href="portfolio.html">Portfolio</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="contact.html">Contact</a></li>
-            @if (session()->has('user'))
+            @if (Auth::check())
                 @php
-                    $user = session('user');
+                    $user = Auth::user();
                 @endphp
-                <li><a>{{ $user->hoten }}</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                        aria-expanded="false">
+                        {{ $user->hoten }} <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ route('user.profile', $user->id) }}">Thông tin cá nhân</a></li>
+                        <li><a href="{{ route('logout') }}"">Đăng xuất</a></li>
+                    </ul>
+                </li>
             @else
                 <li><a href="{{ route('login') }}">Đăng nhập</a></li>
             @endif
+
+
 
         </ul>
     </nav>
