@@ -14,8 +14,8 @@ class DotUngTuyen extends Model
         'ngayketthuc',
         'mo_ta',
     ];
-    public function viTri(){
+    public function viTri()
+    {
         return $this->hasOne(ViTriTuyenDung::class, 'dot_id', 'id');
     }
-
 }

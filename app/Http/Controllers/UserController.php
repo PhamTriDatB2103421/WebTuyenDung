@@ -18,9 +18,11 @@ class UserController extends Controller
     {
         return view('user.login.register');
     }
-    public function list(){
+    public function list()
+    {
         $users = User::all();
-        return view('admin.users.list',
+        return view(
+            'admin.users.list',
             [
                 'all_users' => $users,
             ]
@@ -83,61 +85,64 @@ class UserController extends Controller
         $request->session()->flush();
         return redirect()->route('login');
     }
-    public function edit($id) {
+    public function edit($id)
+    {
         $user = User::find($id);
-        return view('admin.users.form',[
+        return view('admin.pages.users.form', [
             'user' => $user,
         ]);
     }
-    public function store(Request $request) {
-        $request->validate([
-            'username' => 'required|string|max:255|unique:users',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8',
-            'fullname' => 'required|string|max:255',
-            'phone' => 'nullable|string|max:15',
-            'role' => 'required|in:admin,user',
-        ]);
-
-        // Tạo mới người dùng
-        User::create([
-            'username' => $request->username,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'hoten' => $request->fullname,
-            'sodienthoai' => $request->phone,
-            'roles' => $request->role,
-        ]);
-
-        return redirect()->back()->with('message', 'Thêm mới người dùng thành công!');
+    public function add()
+    {
+        return view('admin.pages.users.form');
     }
-    public function update(Request $request, $id){
-        $request->validate([
-            'username' => 'required|string|max:255|unique:users,username,' . $id,
-            'email' => 'required|string|email|max:255|unique:users,email,' . $id,
-            'password' => 'nullable|string|min:8',
-            'fullname' => 'required|string|max:255',
-            'phone' => 'nullable|string|max:15',
-            'role' => 'required|in:admin,user',
-        ]);
+    public function store(Request $request)
+    {
+        try {
+            $user = User::create([
+                'username' => $request->username,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'hoten' => $request->fullname,
+                'sodienthoai' => $request->phone,
+                'roles' => $request->role,
+            ]);
 
-        $user = User::findOrFail($id);
-        $user->username = $request->username;
-        $user->email = $request->email;
-
-        if ($request->filled('password')) {
-            $user->password = Hash::make($request->password);
+            return redirect()->back()->with('message', 'Thêm mới người dùng thành công!');
+        } catch (\Illuminate\Database\QueryException $e) {
+            if ($e->getCode() == 23000) {
+                return redirect()->back()->withErrors(['username' => 'Tên đăng nhập đã tồn tại!']);
+            }
+            return redirect()->back()->withErrors(['error' => 'Có lỗi xảy ra. Vui lòng thử lại!']);
         }
-
-        $user->hoten = $request->fullname;
-        $user->sodienthoai = $request->phone;
-        $user->roles = $request->role;
-        $user->save();
-
-        return redirect()->back()->with('message', 'Cập nhật người dùng thành công!');
-
     }
-    public function delete($id) {
+    public function update(Request $request, $id)
+    {
+        try {
+            $user = User::findOrFail($id);
+            $user->username = $request->username;
+            $user->email = $request->email;
+            if ($request->filled('password')) {
+                $user->password = Hash::make($request->password);
+            }
+            $user->hoten = $request->fullname;
+            $user->sodienthoai = $request->phone;
+            $user->roles = $request->role;
+            $user->save();
+
+            return redirect()->back()->with('message', 'Cập nhật người dùng thành công!');
+        } catch (\Illuminate\Database\QueryException $e) {
+            if ($e->getCode() == 23000) {
+                return redirect()->back()->withErrors(['username' => 'Tên đăng nhập hoặc email đã tồn tại!']);
+            }
+            return redirect()->back()->withErrors(['error' => 'Có lỗi xảy ra. Vui lòng thử lại!']);
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => 'Có lỗi xảy ra: ' . $e->getMessage()]);
+        }
+    }
+
+    public function delete($id)
+    {
         $user = User::find($id);
         $user->delete();
         return redirect()->back()->with('message', 'Đã xóa thành công');

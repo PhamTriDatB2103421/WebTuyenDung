@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DotUngTuyenController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -13,14 +14,21 @@ Route::post('/auth', [UserController::class, 'auth'])->name('auth');
 Route::post('/register', [UserController::class, 'register_user'])->name('register');
 
 Route::middleware(['admin'])->prefix('admin')->group(function () {
-        Route::get('index', function () { return view('admin.pages.index'); })->name('admin.pages.index');
-        //user
-        Route::get('user/list', [UserController::class, 'list'])->name('admin.user.list');
-        Route::get('user/edit/{id}', [UserController::class, 'edit'])->name('admin.user.edit_form');
-        Route::put('user/edit/update/{id}', [UserController::class, 'update'])->name('admin.user.edit.update');
-        Route::get('user/add', [UserController::class , 'add'])->name('admin.user.add_form');
-        Route::post('user/store', [UserController::class , 'store'])->name('admin.user.store');
-        Route::get('user/delete/{id}', [UserController::class, 'delete'])->name('admin.user.delete');
-
+    Route::get('index', function () {
+        return view('admin.pages.index');
+    })->name('admin.pages.index');
+    //user
+    Route::get('user/list', [UserController::class, 'list'])->name('admin.user.list');
+    Route::get('user/edit/{id}', [UserController::class, 'edit'])->name('admin.user.edit_form');
+    Route::put('user/edit/update/{id}', [UserController::class, 'update'])->name('admin.user.edit.update');
+    Route::get('user/create', [UserController::class, 'add'])->name('admin.user.add_form');
+    Route::post('user/create/store', [UserController::class, 'store'])->name('admin.user.store');
+    Route::get('user/delete/{id}', [UserController::class, 'delete'])->name('admin.user.delete');
+    //dot_ung_tuyen
+    Route::get('dotungtuyen/list', [DotUngTuyenController::class, 'list'])->name('admin.dotungtuyen.list');
+    Route::get('dotungtuyen/edit/{id}', [DotUngTuyenController::class, 'edit'])->name('admin.dotungtuyen.edit_form');
+    Route::put('dotungtuyen/edit/update/{id}', [DotUngTuyenController::class, 'update'])->name('admin.dotungtuyen.edit.update');
+    Route::get('dotungtuyen/create', [DotUngTuyenController::class, 'add'])->name('admin.dotungtuyen.add_form');
+    Route::post('dotungtuyen/create/store', [DotUngTuyenController::class, 'store'])->name('admin.dotungtuyen.store');
+    Route::get('dotungtuyen/delete/{id}', [DotUngTuyenController::class, 'delete'])->name('admin.dotungtuyen.delete');
 });
-

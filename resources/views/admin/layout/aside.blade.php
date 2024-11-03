@@ -5,11 +5,11 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+        <div class="mx-3 sidebar-brand-text">SB Admin <sup>2</sup></div>
     </a>
 
     <!-- Divider -->
-    <hr class="sidebar-divider my-0">
+    <hr class="my-0 sidebar-divider">
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
@@ -28,16 +28,32 @@
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-            aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers"
+            aria-expanded="true" aria-controls="collapseUsers">
             <i class="fa fa-user" aria-hidden="true"></i>
-                        <span>Người dùng</span>
+            <span>Người dùng</span>
         </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
+        <div id="collapseUsers" class="collapse" aria-labelledby="headingUsers" data-parent="#accordionSidebar">
+            <div class="py-2 bg-white rounded collapse-inner">
                 <h6 class="collapse-header">Quản lý người dùng</h6>
                 <a class="collapse-item" href="{{ route('admin.user.list') }}">Danh sách người dùng</a>
-                <a class="collapse-item" href="cards.html">Thêm người dùng</a>
+                <a class="collapse-item" href="{{ route('admin.user.add_form') }}">Thêm người dùng</a>
+            </div>
+        </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDotUngTuyen"
+            aria-expanded="true" aria-controls="collapseDotUngTuyen">
+            <i class="fa fa-calendar-o" aria-hidden="true"></i>
+            <span>Đợt ứng tuyển</span>
+        </a>
+        <div id="collapseDotUngTuyen" class="collapse" aria-labelledby="headingDotUngTuyen"
+            data-parent="#accordionSidebar">
+            <div class="py-2 bg-white rounded collapse-inner">
+                <h6 class="collapse-header">Quản lý Đợt ứng tuyển</h6>
+                <a class="collapse-item" href="{{ route('admin.dotungtuyen.list') }}">Danh sách Đợt ứng tuyển</a>
+                <a class="collapse-item" href="{{ route('admin.dotungtuyen.add_form') }}">Thêm Đợt ứng tuyển</a>
             </div>
         </div>
     </li>
@@ -48,7 +64,7 @@
 
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        <button class="border-0 rounded-circle" id="sidebarToggle"></button>
     </div>
 
 
