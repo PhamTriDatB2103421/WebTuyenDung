@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BaiVietController;
 use App\Http\Controllers\DotUngTuyenController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
@@ -42,4 +43,11 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
     Route::get('vitri/create', [ViTriController::class, 'add'])->name('admin.vitri.add_form');
     Route::post('vitri/create/store', [ViTriController::class, 'store'])->name('admin.vitri.store');
     Route::get('vitri/delete/{id}', [ViTriController::class, 'delete'])->name('admin.vitri.delete');
-});
+    //Bài viết tuyển dụng
+    Route::get('baiviet/list', [BaiVietController::class, 'list'])->name('admin.baiviet.list');
+    Route::get('baiviet/edit/{id}', [BaiVietController::class, 'edit'])->name('admin.baiviet.edit_form');
+    Route::put('baiviet/edit/update/{id}', [BaiVietController::class, 'update'])->name('admin.baiviet.edit.update');
+    Route::get('baiviet/create', [BaiVietController::class, 'add'])->name('admin.baiviet.add_form');
+    Route::post('baiviet/create/store', [BaiVietController::class, 'store'])->name('admin.baiviet.store');
+    Route::get('baiviet/delete/{id}', [BaiVietController::class, 'delete'])->name('admin.baiviet.delete');
+ });

@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('hinh_anh_bai_viet', function (Blueprint $table) {
             $table->id();
+            $table->string('LinkAnh');
             $table->unsignedBigInteger('BaiVietId');
             $table->timestamps();
         });

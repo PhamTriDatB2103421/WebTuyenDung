@@ -71,7 +71,20 @@
             </div>
         </div>
     </li>
-
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBaiViet"
+            aria-expanded="true" aria-controls="collapseBaiViet">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <span>Bài viết tuyển dụng</span>
+        </a>
+        <div id="collapseBaiViet" class="collapse" aria-labelledby="headingBaiViet" data-parent="#accordionSidebar">
+            <div class="py-2 bg-white rounded collapse-inner">
+                <h6 class="collapse-header">Quản lý Vị trí tuyển dụng</h6>
+                <a class="collapse-item" href="{{ route('admin.baiviet.list') }}">Danh sách Bài viết tuyển dụng</a>
+                <a class="collapse-item" href="{{ route('admin.baiviet.add_form') }}">Thêm Bài viết tuyển dụng</a>
+            </div>
+        </div>
+    </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">

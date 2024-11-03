@@ -5,11 +5,10 @@
     <h1 id="fh5co-logo"><a href="index.html">Marble</a></h1>
     <nav id="fh5co-main-menu" role="navigation">
         <ul>
-            <li class="fh5co-active"><a href="index.html">Home</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="portfolio.html">Portfolio</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li class="fh5co-active"><a href="{{ route('index') }}">Trang chủ</a></li>
+            <li><a href="portfolio.html">Bài tuyển dụng</a></li>
+            <li><a href="about.html">Về chúng tôi</a></li>
+            <li><a href="contact.html">Liên hệ</a></li>
             @if (Auth::check())
                 @php
                     $user = Auth::user();
@@ -21,6 +20,9 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ route('user.profile', $user->id) }}">Thông tin cá nhân</a></li>
+                        @if ($user->roles == 2)
+                            <li><a href="{{ route('admin.pages.index') }}">Giao diện quản lý</a></li>
+                        @endif
                         <li><a href="{{ route('logout') }}"">Đăng xuất</a></li>
                     </ul>
                 </li>

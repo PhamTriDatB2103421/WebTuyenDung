@@ -10,6 +10,7 @@ class HinhAnhBaiViet extends Model
     use Notifiable;
     protected $fillable = [
         'id',
+        'LinkAnh',
         'BaiVietId',
     ];
     public function baiViet(){
