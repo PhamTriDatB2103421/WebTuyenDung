@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\DotUngTuyen;
+use App\Models\ViTriTuyenDung;
 use Illuminate\Http\Request;
 
 class DotUngTuyenController extends Controller
@@ -75,5 +76,11 @@ class DotUngTuyenController extends Controller
             }
             return redirect()->back()->withErrors(['error' => 'Có lỗi xảy ra. Vui lòng thử lại!']);
         }
+    }
+    public function delete($id){
+        $temp  = DotUngTuyen::find($id);
+        ViTriTuyenDung::where('dot_id', $id)->delete();
+        $temp->delete();
+        return redirect()->back()->with('message', 'Đã xóa thành công');
     }
 }

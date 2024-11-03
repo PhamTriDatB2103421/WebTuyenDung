@@ -57,6 +57,21 @@
             </div>
         </div>
     </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseViTri"
+            aria-expanded="true" aria-controls="collapseViTri">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <span>Vị trí tuyển dụng</span>
+        </a>
+        <div id="collapseViTri" class="collapse" aria-labelledby="headingViTri"
+            data-parent="#accordionSidebar">
+            <div class="py-2 bg-white rounded collapse-inner">
+                <h6 class="collapse-header">Quản lý Vị trí tuyển dụng</h6>
+                <a class="collapse-item" href="{{ route('admin.vitri.list') }}">Danh sách Vị trí tuyển dụng</a>
+                <a class="collapse-item" href="{{ route('admin.vitri.add_form') }}">Thêm Vị trí tuyển dụng</a>
+            </div>
+        </div>
+    </li>
 
 
     <!-- Divider -->

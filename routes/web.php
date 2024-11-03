@@ -3,6 +3,7 @@
 use App\Http\Controllers\DotUngTuyenController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ViTriController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -31,4 +32,11 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
     Route::get('dotungtuyen/create', [DotUngTuyenController::class, 'add'])->name('admin.dotungtuyen.add_form');
     Route::post('dotungtuyen/create/store', [DotUngTuyenController::class, 'store'])->name('admin.dotungtuyen.store');
     Route::get('dotungtuyen/delete/{id}', [DotUngTuyenController::class, 'delete'])->name('admin.dotungtuyen.delete');
+    //vị trí tuyển dụng
+    Route::get('vitri/list', [ViTriController::class, 'list'])->name('admin.vitri.list');
+    Route::get('vitri/edit/{id}', [ViTriController::class, 'edit'])->name('admin.vitri.edit_form');
+    Route::put('vitri/edit/update/{id}', [ViTriController::class, 'update'])->name('admin.vitri.edit.update');
+    Route::get('vitri/create', [ViTriController::class, 'add'])->name('admin.vitri.add_form');
+    Route::post('vitri/create/store', [ViTriController::class, 'store'])->name('admin.vitri.store');
+    Route::get('vitri/delete/{id}', [ViTriController::class, 'delete'])->name('admin.vitri.delete');
 });
