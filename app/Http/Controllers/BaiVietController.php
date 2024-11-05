@@ -46,7 +46,7 @@ class BaiVietController extends Controller
         ]);
         if ($request->hasFile('hinh_anh')) {
             foreach ($request->file('hinh_anh') as $file) {
-                $path = $file->store('uploads/hinh_anh', 'public');
+                $path = $file;
                 HinhAnhBaiViet::create([
                     'LinkAnh' => $path,
                     'BaiVietId' => $baiviet->id,
@@ -102,4 +102,12 @@ class BaiVietController extends Controller
         $baiviet->delete();
         return redirect()->route('admin.baiviet.list')->with('message', 'Bài viết đã được xóa thành công.');
     }
+
+    public function baiViet($id){
+        $baiviet = BaiViet::with('hinhAnhBaiViets')->find($id);
+        return view('user.pages.baiviet.baiviet', [
+            'baiViet' => $baiviet,
+        ]);
+    }
+
 }

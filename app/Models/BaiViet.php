@@ -32,6 +32,6 @@ class BaiViet extends Model
 
     public function dotUngTuyen()
     {
-        return $this->belongsTo(DotUngTuyen::class, 'dot_ung_tuyen_id');
+        return $this->viTriTuyenDung->dotTuyenDung;
     }
 }

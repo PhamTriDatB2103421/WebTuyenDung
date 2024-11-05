@@ -23,6 +23,15 @@
                                 <th>Thao tác</th>
                             </tr>
                         </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Tiêu đề</th>
+                                <th>Nội dung</th>
+                                <th>Ngày đăng</th>
+                                <th>Tác giả</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </tfoot>
                         <tbody>
                             @foreach ($baiviets as $baiviet)
                                 <tr>
