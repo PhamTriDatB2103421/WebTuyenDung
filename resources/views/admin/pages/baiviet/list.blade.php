@@ -27,7 +27,7 @@
                             @foreach ($baiviets as $baiviet)
                                 <tr>
                                     <td>{{ $baiviet->tieu_de }}</td>
-                                    <td>{{ Str::limit($baiviet->noi_dung, 50) }}</td>
+                                    <td>{!! Str::limit($baiviet->noi_dung, 50) !!}</td>
                                     <td>{{ $baiviet->ngay_dang }}</td>
                                     <td>{{ $baiviet->user->hoten }}</td>
                                     <td>

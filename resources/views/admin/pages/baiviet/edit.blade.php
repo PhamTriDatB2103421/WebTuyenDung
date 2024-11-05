@@ -67,27 +67,22 @@
                             </div>
                         </div>
 
-                        <!-- Hiển thị hình ảnh hiện tại -->
                         <div class="form-group row">
                             <label class="col-sm-3 text-end control-label col-form-label">Hình ảnh hiện tại</label>
                             <div class="col-sm-9">
                                 @foreach ($baiviet->hinhAnhBaiViets as $hinhAnh)
-                                    <img src="{{ asset('storage/' . $hinhAnh->LinkAnh) }}" alt="Hình ảnh bài viết"
-                                        width="100" class="me-2" />
-                                @endforeach
-                            </div>
-                        </div>
+                                    <div class="d-inline-block me-2">
 
-                        <!-- Thêm hình ảnh mới -->
-                        <div class="form-group row">
-                            <label for="hinh_anh" class="col-sm-3 text-end control-label col-form-label">Hình ảnh
-                                mới</label>
-                            <div class="col-sm-9" id="image-inputs-container">
-                                <input type="file" class="form-control @error('hinh_anh') is-invalid @enderror"
-                                    id="hinh_anh_0" name="hinh_anh[]" multiple />
-                                @error('hinh_anh')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
+                                        <img src="{{ asset('storage/uploads/hinh_anh/' . $hinhAnh->LinkAnh) }}"
+                                            alt="Hình ảnh bài viết" width="100">
+                                        <!-- Nút xóa -->
+                                        <button type="button" class="mt-1 btn btn-danger btn-sm"
+                                            onclick="confirmDelete({{ $hinhAnh->id }})">
+                                            Xóa
+                                        </button>
+                                        <input type="hidden" name="delete_images[]" value="{{ $hinhAnh->id }}">
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
 
@@ -96,7 +91,7 @@
                             <label for="nguoi_dung_id" class="col-sm-3 text-end control-label col-form-label">Người
                                 dùng</label>
                             <div class="col-sm-9">
-                                <input type="text" value="{{ Auth::user()->id }}" readonly>
+                                <input type="text" value="{{ Auth::user()->hoten }}" readonly>
                             </div>
                         </div>
 
@@ -144,6 +139,17 @@
 
             // Tăng biến đếm
             imageInputCount++;
+        }
+
+        function confirmDelete(imageId) {
+            if (confirm("Bạn có chắc chắn muốn xóa ảnh này?")) {
+                // Nếu người dùng xác nhận, tạo một hidden input để gửi ID của ảnh cần xóa
+                let input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = 'delete_images[]';
+                input.value = imageId;
+                document.forms[0].appendChild(input); // Thêm vào form hiện tại
+            }
         }
     </script>
 @endsection

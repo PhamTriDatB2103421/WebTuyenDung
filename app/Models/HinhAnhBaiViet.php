@@ -13,7 +13,9 @@ class HinhAnhBaiViet extends Model
         'LinkAnh',
         'BaiVietId',
     ];
-    public function baiViet(){
-        return $this->hasOne(BaiViet::class , 'BaiVietId', 'id');
+    protected $table = 'hinh_anh_bai_viet';
+    public function baiViet()
+    {
+        return $this->hasOne(BaiViet::class, 'BaiVietId', 'id');
     }
 }

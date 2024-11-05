@@ -55,7 +55,7 @@
                             <label for="nguoi_dung_id" class="col-sm-3 text-end control-label col-form-label">Người
                                 dùng</label>
                             <div class="col-sm-9">
-                                <input type="text" value="{{ Auth::user()->id }}" readonly>
+                                <input type="text" value="{{ Auth::user()->hoten }}" readonly>
                             </div>
                         </div>
 
