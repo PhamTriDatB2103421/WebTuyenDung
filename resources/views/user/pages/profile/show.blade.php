@@ -58,10 +58,12 @@
                             <div class="mt-4">
                                 <a href="{{ route('user.profile.edit', $user->id) }}" class="btn btn-warning">Chỉnh sửa</a>
                             </div>
+                            <div class="mt-4">
+                                <a href="" class="btn btn-warning">Xem hồ sơ đã nộp</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
     @endif
 @endsection

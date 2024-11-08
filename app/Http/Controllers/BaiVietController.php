@@ -107,7 +107,8 @@ class BaiVietController extends Controller
         return redirect()->route('admin.baiviet.list')->with('message', 'Bài viết đã được xóa thành công.');
     }
 
-    public function baiViet($id){
+    public function baiViet($id)
+    {
         $baiviet = BaiViet::with('hinhAnhBaiViets')->find($id);
         return view('user.pages.baiviet.baiviet', [
             'baiViet' => $baiviet,
@@ -145,5 +146,10 @@ class BaiVietController extends Controller
         } else {
             return redirect()->back()->with('error', 'Có lỗi khi gửi đơn ứng tuyển. Vui lòng thử lại!');
         }
+    }
+    public function user_list()
+    {
+        $baiViets = BaiViet::with('hinhAnhBaiViets')->get();
+        return  view('user.pages.baiviet.list', compact('baiViets'));
     }
 }

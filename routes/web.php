@@ -19,6 +19,7 @@ Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 //baiViet
 Route::get('/baiViet/{id}', [BaiVietController::class, 'baiViet'])->name('user.baiviet');
 Route::get('/baiViet/{idu}/{idbv}', [BaiVietController::class, 'nop'])->name('user.baiviet.nop');
+Route::get('/baiviet/list', [BaiVietController::class, 'user_list'])->name('user.baiviet.list');
 
 //route
 // Hiển thị hồ sơ người dùng
