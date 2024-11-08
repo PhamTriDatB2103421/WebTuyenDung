@@ -47,6 +47,7 @@
                                         <td>{{ \Carbon\Carbon::parse($dot->ngayketthuc)->format('d/m/Y') }}</td>
                                         <td>{{ $dot->mo_ta }}</td>
                                         <td>
+
                                             <a href="{{ route('admin.dotungtuyen.edit_form', $dot->id) }}">
                                                 <i class="fa fa-pencil" aria-hidden="true"></i>
                                             </a>

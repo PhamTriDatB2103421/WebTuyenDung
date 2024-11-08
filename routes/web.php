@@ -3,6 +3,7 @@
 use App\Http\Controllers\BaiVietController;
 use App\Http\Controllers\DotUngTuyenController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NopDonController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ViTriController;
 use Illuminate\Support\Facades\Route;
@@ -67,4 +68,9 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
     Route::get('baiviet/create', [BaiVietController::class, 'add'])->name('admin.baiviet.add_form');
     Route::post('baiviet/create/store', [BaiVietController::class, 'store'])->name('admin.baiviet.store');
     Route::get('baiviet/delete/{id}', [BaiVietController::class, 'delete'])->name('admin.baiviet.delete');
+    //đơn tuyển dụng
+    Route::get('donUngtuyen/list/{id}', [NopDonController::class, 'list'])->name('admin.don.list');
+    Route::get('donUngtuyen/edit/{id}', [NopDonController::class, 'edit'])->name('admin.don.edit');
+    Route::post('donUngtuyen/edit/update/{id}', [NopDonController::class, 'update'])->name('admin.don.update');
+    Route::get('donUngtuyen/delete/{id}', [NopDonController::class, 'delete'])->name('admin.don.delete');
  });
