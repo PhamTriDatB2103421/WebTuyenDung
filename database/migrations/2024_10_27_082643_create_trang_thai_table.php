@@ -13,11 +13,10 @@ return new class extends Migration
     {
         Schema::create('trang_thai', function (Blueprint $table) {
             $table->id();
+            $table->int('ma_tt');
             $table->string('ten_trangthai');
             $table->timestamps();
         });
-
-
     }
 
     /**

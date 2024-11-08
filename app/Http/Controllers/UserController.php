@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\NguoiUngTuyen;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -78,8 +79,69 @@ class UserController extends Controller
             return redirect()->back()->with('error', 'Tài khoản đã tồn tại');
         }
     }
-    public function profile($id){
+    public function show($id)
+    {
+        $user = NguoiUngTuyen::find($id);
+        return view('user.pages.profile.show', compact('user'));
+    }
 
+    // Hiển thị form chỉnh sửa hồ sơ
+    public function profile_edit($id)
+    {
+        $user = NguoiUngTuyen::findOrFail($id); // Lấy thông tin người dùng
+        return view('user.pages.profile.edit', compact('user')); // Trả về form chỉnh sửa
+    }
+
+    // Cập nhật thông tin hồ sơ
+    public function profile_update(Request $request, $id)
+    {
+        // Validate dữ liệu đầu vào
+        $request->validate([
+            'hoten' => 'required|max:255',
+            'date' => 'required|date',
+            'sex' => 'required|in:male,female,other',
+            'diachi' => 'required|max:255',
+            'email' => 'required|email',
+            'sdt' => 'required|max:15',
+        ]);
+
+        // Cập nhật thông tin người dùng
+        $user = NguoiUngTuyen::findOrFail($id);
+        $user->update([
+            'hoten' => $request->hoten,
+            'ngaysinh' => $request->date,
+            'gioitinh' => $request->sex,
+            'diachi' => $request->diachi,
+            'email' => $request->email,
+            'sodienthoai' => $request->sdt,
+        ]);
+
+        // Trả về thông báo thành công
+        return redirect()->route('user.profile', $id)->with('message', 'Cập nhật thông tin thành công!');
+    }
+    public function concacloiquai(){
+        return view('user.pages.profile.form');
+    }
+    public function profile_store(Request $request){
+        $user  = Auth::user();
+        try {
+            $user = NguoiUngTuyen::create([
+                'hoten' => $request->hoten,
+                'ngaysinh' => $request->date,
+                'gioitinh' => $request->sex,
+                'diachi' => $request->diachi,
+                'email' => $request->email,
+                'sodienthoai' => $request->sdt,
+                'user_id' => $user->id,
+            ]);
+            return redirect()->back()->with('message', 'Thêm mới người dùng thành công!');
+
+        } catch (\Illuminate\Database\QueryException $e) {
+            if ($e->getCode() == 23000) {
+                return redirect()->back()->withErrors(['error' => 'Tên đăng nhập đã tồn tại!']);
+            }
+            return redirect()->back()->withErrors(['error' => 'Có lỗi xảy ra. Vui lòng thử lại!']);
+        }
     }
 
     public function logout(Request $request)

@@ -5,7 +5,7 @@
     <h1 id="fh5co-logo"><a href="index.html">Marble</a></h1>
     <nav id="fh5co-main-menu" role="navigation">
         <ul>
-            <li class="fh5co-active"><a href="{{ route('index') }}">Trang chủ</a></li>
+            <li><a href="{{ route('index') }}">Trang chủ</a></li>
             <li><a href="portfolio.html">Bài tuyển dụng</a></li>
             <li><a href="about.html">Về chúng tôi</a></li>
             <li><a href="contact.html">Liên hệ</a></li>
@@ -28,6 +28,17 @@
                 </li>
             @else
                 <li><a href="{{ route('login') }}">Đăng nhập</a></li>
+            @endif
+            @if (session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
+
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
             @endif
 
 

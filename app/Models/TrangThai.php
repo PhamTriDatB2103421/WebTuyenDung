@@ -9,6 +9,7 @@ class TrangThai extends Model
     protected $table = 'trang_thai';
 
     protected $fillable = [
+        'ma_tt',
         'ten_trangthai',
     ];
 

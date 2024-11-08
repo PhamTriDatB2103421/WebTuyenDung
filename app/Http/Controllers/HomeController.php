@@ -14,4 +14,7 @@ class HomeController extends Controller
         ->with('hinhAnhBaiViets')->get();
         return view('user.index',compact('baiViets'));
     }
+    public function aplican_create(){
+        return view('user.pages.baiviet.baiviet');
+    }
 }

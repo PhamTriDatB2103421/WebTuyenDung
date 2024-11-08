@@ -17,9 +17,23 @@ Route::post('/register', [UserController::class, 'register_user'])->name('regist
 Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 //baiViet
 Route::get('/baiViet/{id}', [BaiVietController::class, 'baiViet'])->name('user.baiviet');
+Route::get('/baiViet/{idu}/{idbv}', [BaiVietController::class, 'nop'])->name('user.baiviet.nop');
+
+//route
+// Hiển thị hồ sơ người dùng
+Route::get('/profile/{id}', [UserController::class, 'show'])->name('user.profile');
+
+Route::get('/info_create', [UserController::class, 'concacloiquai'])->name('loivcl');
+Route::post('/profile/store', [UserController::class, 'profile_store'])->name('user.profile.store');
+
+// Chỉnh sửa hồ sơ người dùng
+Route::get('/profile/{id}/edit', [UserController::class, 'profile_edit'])->name('user.profile.edit');
+
+// Cập nhật thông tin hồ sơ người dùng
+Route::post('/profile/{id}/update', [UserController::class, 'profile_update'])->name('user.profile.update');
 
 
-Route::get('/user/profile/{id}', [UserController::class , 'profile'])->name('user.profile');
+
 
 Route::middleware(['admin'])->prefix('admin')->group(function () {
     Route::get('index', function () {

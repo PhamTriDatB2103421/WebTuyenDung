@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\BaiViet;
+use App\Models\TrangThai;
+use App\Models\DonUngTuyen;
 use Illuminate\Http\Request;
+use App\Models\NguoiUngTuyen;
 use App\Models\HinhAnhBaiViet;
 use App\Models\ViTriTuyenDung;
 use Illuminate\Support\Facades\Auth;
@@ -109,5 +113,37 @@ class BaiVietController extends Controller
             'baiViet' => $baiviet,
         ]);
     }
+    public function nop($idu, $idbv)
+    {
+        $nguoiUngTuyen = NguoiUngTuyen::find($idu);
+        if (!$nguoiUngTuyen) {
+            return redirect()->route('loivcl')->with('error', 'Hồ sơ cá nhân chưa có không tồn tại.');
+        }
 
+        // Kiểm tra xem vị trí tuyển dụng (bài viết) có tồn tại không
+        $baiViet = BaiViet::find($idbv);
+        if (!$baiViet) {
+            return redirect()->back()->with('error', 'Vị trí tuyển dụng không tồn tại.');
+        }
+        $vitriTuyenDung = $baiViet->viTriTuyenDung->tenvitri;
+        $mota = $baiViet->viTriTuyenDung->mota;
+        $yeucau = $baiViet->viTriTuyenDung->yeucau;
+
+
+        // Tạo đơn ứng tuyển mới
+        $donUngTuyen = DonUngTuyen::create([
+            'vitri_id' =>  $baiViet->viTriTuyenDung->id,
+            'trangthai_id' => 3,
+            'nguoiUt_id' => $idu,
+            'ngay_nop_don' => Carbon::now(),
+            'ngay_cap_nhat' => Carbon::now(),
+            'ghichu' => 'Ứng tuyển cho vị trí: ' . $vitriTuyenDung . '. Mô tả: ' . $mota . '. Yêu cầu: ' . $yeucau,
+        ]);
+        if ($donUngTuyen) {
+            return redirect()->back()
+                ->with('success', 'Đơn ứng tuyển của bạn đã được gửi thành công!');
+        } else {
+            return redirect()->back()->with('error', 'Có lỗi khi gửi đơn ứng tuyển. Vui lòng thử lại!');
+        }
+    }
 }

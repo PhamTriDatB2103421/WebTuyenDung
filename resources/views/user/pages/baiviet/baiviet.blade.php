@@ -63,7 +63,7 @@
             <div class="row">
                 <div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
                     <p class="fh5co-lead">Nộp đơn ứng tuyển tại đây.</p>
-                    <a href="#" class="btn btn-primary">Nộp Đơn</a>
+                    <a href="{{ route('user.baiviet.nop', [Auth::id(), $baiViet->id]) }}" class="btn btn-primary">Nộp Đơn</a>
                 </div>
 
             </div>
