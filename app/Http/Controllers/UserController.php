@@ -81,7 +81,7 @@ class UserController extends Controller
     }
     public function show($id)
     {
-        $user = NguoiUngTuyen::find($id);
+        $user = NguoiUngTuyen::where('user_id', $id)->first();
         return view('user.pages.profile.show', compact('user'));
     }
 
@@ -117,12 +117,14 @@ class UserController extends Controller
         ]);
 
         // Trả về thông báo thành công
-        return redirect()->route('user.profile', $id)->with('message', 'Cập nhật thông tin thành công!');
+        return redirect()->back()->with('message', 'Cập nhật thông tin thành công!');
     }
-    public function concacloiquai(){
+    public function concacloiquai()
+    {
         return view('user.pages.profile.form');
     }
-    public function profile_store(Request $request){
+    public function profile_store(Request $request)
+    {
         $user  = Auth::user();
         try {
             $user = NguoiUngTuyen::create([
@@ -135,7 +137,6 @@ class UserController extends Controller
                 'user_id' => $user->id,
             ]);
             return redirect()->back()->with('message', 'Thêm mới người dùng thành công!');
-
         } catch (\Illuminate\Database\QueryException $e) {
             if ($e->getCode() == 23000) {
                 return redirect()->back()->withErrors(['error' => 'Tên đăng nhập đã tồn tại!']);

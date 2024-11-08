@@ -3,6 +3,21 @@
     <title>Thông tin cá nhân</title>
 @endsection
 @section('user_content')
+    @if (session('message'))
+        <div class="alert alert-success">
+            {{ session('message') }}
+        </div>
+    @endif
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     @if (!isset($user))
         <div id="fh5co-main">
             <div class="fh5co-narrow-content">
@@ -59,7 +74,9 @@
                                 <a href="{{ route('user.profile.edit', $user->id) }}" class="btn btn-warning">Chỉnh sửa</a>
                             </div>
                             <div class="mt-4">
-                                <a href="" class="btn btn-warning">Xem hồ sơ đã nộp</a>
+                                <a href="{{ route('user.don.list', Auth::user()->id) }}" class="btn btn-warning">Xem hồ sơ
+                                    đã
+                                    nộp</a>
                             </div>
                         </div>
                     </div>

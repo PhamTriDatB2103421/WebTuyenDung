@@ -6,6 +6,21 @@
     <div id="fh5co-main">
         <div class="fh5co-narrow-content">
             <div class="row row-bottom-padded-md">
+                @if (session('message'))
+                    <div class="alert alert-success">
+                        {{ session('message') }}
+                    </div>
+                @endif
+
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <h2>Chỉnh sửa thông tin hồ sơ</h2>
 
                 <form action="{{ route('user.profile.update', $user->id) }}" method="POST">

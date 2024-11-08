@@ -46,6 +46,9 @@
                                         <a href="{{ route('admin.vitri.edit_form', $vitri->id) }}">
                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                         </a>
+                                        <a href="{{ route('admin.don.list', $vitri->id) }}">
+                                            <i class="fa fa-eye" aria-hidden="true"></i>
+                                        </a>
                                         <a href="{{ route('admin.vitri.delete', $vitri->id) }}">
                                             <i class="fa fa-times-circle"></i>
                                         </a>

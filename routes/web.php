@@ -20,6 +20,8 @@ Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 Route::get('/baiViet/{id}', [BaiVietController::class, 'baiViet'])->name('user.baiviet');
 Route::get('/baiViet/{idu}/{idbv}', [BaiVietController::class, 'nop'])->name('user.baiviet.nop');
 Route::get('/baiviet/list', [BaiVietController::class, 'user_list'])->name('user.baiviet.list');
+// xem hồ sơ đã nộp
+Route::get('/hoso/{id}', [NopDonController::class, 'user_list'])->name('user.don.list');
 
 //route
 // Hiển thị hồ sơ người dùng
@@ -74,4 +76,4 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
     Route::get('donUngtuyen/edit/{id}', [NopDonController::class, 'edit'])->name('admin.don.edit');
     Route::post('donUngtuyen/edit/update/{id}', [NopDonController::class, 'update'])->name('admin.don.update');
     Route::get('donUngtuyen/delete/{id}', [NopDonController::class, 'delete'])->name('admin.don.delete');
- });
+});

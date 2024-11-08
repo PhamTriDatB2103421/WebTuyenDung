@@ -2,7 +2,7 @@
 <aside id="fh5co-aside" role="complementary" class="border js-fullheight">
 
 
-    <h1 id="fh5co-logo"><a href="index.html">Marble</a></h1>
+    <h1 id="fh5co-logo"><a href="{{ route('index') }}">Marble</a></h1>
     <nav id="fh5co-main-menu" role="navigation">
         <ul>
             <li><a href="{{ route('index') }}">Trang chủ</a></li>
