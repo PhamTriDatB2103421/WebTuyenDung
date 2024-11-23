@@ -7,58 +7,37 @@
         <aside id="fh5co-hero" class="js-fullheight">
             <div class="flexslider js-fullheight">
                 <ul class="slides">
-                    <li style="background-image: url(images/img_bg_1.jpg);">
+                    <li style="background-image: url({{ asset('FrontEnd/images/bg_1.png') }});">
                         <div class="overlay"></div>
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="text-center col-md-8 col-md-offset-2 js-fullheight slider-text">
                                     <div class="slider-text-inner">
-                                        <h1>Intuitive <strong></strong> is How Give We the User New Superpowers</h1>
-                                        <h2>Free html5 templates Made by <a href="http://freehtml5.co/"
-                                                target="_blank">freehtml5.co</a></h2>
-                                        <p><a class="btn btn-primary btn-demo popup-vimeo"
-                                                href="https://vimeo.com/channels/staffpicks/93951774"> <i
-                                                    class="icon-monitor"></i> Live Preview</a> <a
-                                                class="btn btn-primary btn-learn">Learn More<i
-                                                    class="icon-arrow-right3"></i></a></p>
+                                        <h1>Tuyển dụng!! <strong></strong> Nhiều vị trí phù hợp đang chờ bạn ứng tuyển</h1>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </li>
-                    <li style="background-image: url({{ asset('FrontEnd/images/img_bg_2.jpg') }});">
+                    <li style="background-image: url({{ asset('FrontEnd/images/bg_2.jpg') }});">
                         <div class="overlay"></div>
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="text-center col-md-8 col-md-offset-2 js-fullheight slider-text">
                                     <div class="slider-text-inner">
-                                        <h1>We are Happy to Create Newest Modern Websites</h1>
-                                        <h2>Free html5 templates Made by <a href="http://freehtml5.co/"
-                                                target="_blank">freehtml5.co</a></h2>
-                                        <p><a class="btn btn-primary btn-demo popup-vimeo"
-                                                href="https://vimeo.com/channels/staffpicks/93951774"> <i
-                                                    class="icon-monitor"></i> Live Preview</a> <a
-                                                class="btn btn-primary btn-learn">Learn More<i
-                                                    class="icon-arrow-right3"></i></a></p>
+                                        <h1>Chúng tôi rất vui nếu có cơ hội làm việc chung với bạn</h1>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </li>
-                    <li style="background-image: url({{ asset('images/img_bg_3.jpg') }});">
+                    <li style="background-image: url({{ asset('FrontEnd/images/bg_3.png') }});">
                         <div class="overlay"></div>
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="text-center col-md-8 col-md-offset-2 js-fullheight slider-text">
                                     <div class="slider-text-inner">
-                                        <h1>Download our Free HTML5 Bootstrap Template</h1>
-                                        <h2>Free html5 templates Made by <a href="http://freehtml5.co/"
-                                                target="_blank">freehtml5.co</a></h2>
-                                        <p><a class="btn btn-primary btn-demo popup-vimeo"
-                                                href="https://vimeo.com/channels/staffpicks/93951774"> <i
-                                                    class="icon-monitor"></i> Live Preview</a> <a
-                                                class="btn btn-primary btn-learn">Learn More<i
-                                                    class="icon-arrow-right3"></i></a></p>
+                                        <h1>Hãy trở thành một đồng đội của chúng tôi</h1>
                                     </div>
                                 </div>
                             </div>
@@ -123,7 +102,7 @@
             </div>
         </div>
         <div class="fh5co-narrow-content">
-            <h2 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft">Bài tuyên dụng gần đây</h2>
+            <h2 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft">Bài tuyển dụng gần đây</h2>
             <div class="row row-bottom-padded-md">
                 @foreach ($baiViets as $baiViet)
                     <div class="col-md-3 col-sm-6 col-padding animate-box" data-animate-effect="fadeInLeft">
