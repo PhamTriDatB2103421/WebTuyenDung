@@ -12,7 +12,7 @@ class HomeController extends Controller
     {
         $baiViets = BaiViet::where('updated_at', '>=', Carbon::now()->subDays(30))
             ->orderBy('updated_at', 'desc')
-            ->with('hinhAnhBaiViets')->get(5);
+            ->with('hinhAnhBaiViets')->take(4)->get();
         return view('user.index', compact('baiViets'));
     }
     public function aplican_create()

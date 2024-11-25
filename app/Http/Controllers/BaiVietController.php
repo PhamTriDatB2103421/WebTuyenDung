@@ -32,7 +32,6 @@ class BaiVietController extends Controller
 
     public function store(Request $request)
     {
-
         $baiviet = BaiViet::create([
             'tieu_de' => $request->tieu_de,
             'noi_dung' => $request->noi_dung,
@@ -41,11 +40,10 @@ class BaiVietController extends Controller
             'vi_tri_tuyen_dung_id' => $request->vi_tri_tuyen_dung_id,
         ]);
         if ($request->hasFile('hinh_anh')) {
-            foreach ($request->file('hinh_anh') as $file) {
-                $path = $file;
-                HinhAnhBaiViet::create([
-                    'LinkAnh' => $path,
-                    'BaiVietId' => $baiviet->id,
+            foreach ($request->file('hinh_anh') as $image) {
+                $path = $image->store('uploads/hinh_anh', 'public');
+                $baiviet->hinhAnhBaiViets()->create([
+                    'LinkAnh' => basename($path),
                 ]);
             }
         }
@@ -68,6 +66,7 @@ class BaiVietController extends Controller
         $baiviet->tieu_de = $request->tieu_de;
         $baiviet->noi_dung = $request->noi_dung;
         $baiviet->vi_tri_tuyen_dung_id = $request->vi_tri_tuyen_dung_id;
+
         if ($request->hasFile('hinh_anh')) {
             foreach ($request->file('hinh_anh') as $image) {
                 $path = $image->store('uploads/hinh_anh', 'public');
@@ -80,10 +79,11 @@ class BaiVietController extends Controller
         if ($request->has('delete_images')) {
             foreach ($request->delete_images as $imageId) {
                 $image = HinhAnhBaiViet::findOrFail($imageId);
-                Storage::delete('public/uploads/hinh_anh/'.$image->LinkAnh);
+                Storage::delete('public/uploads/hinh_anh/' . $image->LinkAnh);
                 $image->delete();
             }
         }
+
         $baiviet->save();
 
         return redirect()->route('admin.baiviet.list', $id)->with('message', 'Cập nhật bài viết thành công!');
@@ -129,7 +129,7 @@ class BaiVietController extends Controller
             'nguoiUt_id' => $idu,
             'ngay_nop_don' => Carbon::now(),
             'ngay_cap_nhat' => Carbon::now(),
-            'ghichu' => 'Ứng tuyển cho vị trí: '.$vitriTuyenDung.'. Mô tả: '.$mota.'. Yêu cầu: '.$yeucau,
+            'ghichu' => 'Ứng tuyển cho vị trí: ' . $vitriTuyenDung . '. Mô tả: ' . $mota . '. Yêu cầu: ' . $yeucau,
         ]);
         if ($donUngTuyen) {
             return redirect()->back()
