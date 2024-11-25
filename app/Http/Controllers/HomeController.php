@@ -8,13 +8,15 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $baiViets = BaiViet::where('updated_at', '>=', Carbon::now()->subDays(30))
-        ->orderBy('updated_at', 'desc')
-        ->with('hinhAnhBaiViets')->get();
-        return view('user.index',compact('baiViets'));
+            ->orderBy('updated_at', 'desc')
+            ->with('hinhAnhBaiViets')->get(5);
+        return view('user.index', compact('baiViets'));
     }
-    public function aplican_create(){
+    public function aplican_create()
+    {
         return view('user.pages.baiviet.baiviet');
     }
 }
