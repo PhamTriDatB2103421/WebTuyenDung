@@ -7,8 +7,6 @@
         <ul>
             <li><a href="{{ route('index') }}">Trang chủ</a></li>
             <li><a href="{{ route('user.baiviet.list') }}">Bài tuyển dụng</a></li>
-            <li><a href="about.html">Về chúng tôi</a></li>
-            <li><a href="contact.html">Liên hệ</a></li>
             @if (Auth::check())
                 @php
                     $user = Auth::user();

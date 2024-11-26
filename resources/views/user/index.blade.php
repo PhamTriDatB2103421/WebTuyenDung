@@ -56,9 +56,8 @@
                             <i class="icon-settings"></i>
                         </div>
                         <div class="fh5co-text">
-                            <h3>Strategy</h3>
-                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
-                                there live the blind texts. </p>
+                            <h3>Tìm việc chưa bao giờ dễ thương đến thế!</h3>
+                            <p> Nơi hội tụ những cơ hội xịn sò và giúp bạn bước tới thành công với nụ cười trên môi. </p>
                         </div>
                     </div>
                 </div>
@@ -68,9 +67,8 @@
                             <i class="icon-search4"></i>
                         </div>
                         <div class="fh5co-text">
-                            <h3>Explore</h3>
-                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
-                                there live the blind texts. </p>
+                            <h3>Chào mừng bạn đến với ngôi nhà chung!</h3>
+                            <p>Chúng tôi không chỉ là trang tuyển dụng, mà còn là bệ phóng sự nghiệp cho bạn tỏa sáng. </p>
                         </div>
                     </div>
                 </div>
@@ -81,9 +79,9 @@
                             <i class="icon-paperplane"></i>
                         </div>
                         <div class="fh5co-text">
-                            <h3>Direction</h3>
-                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
-                                there live the blind texts. </p>
+                            <h3>Công việc lý tưởng của bạn ở ngay đây!</h3>
+                            <p>Hãy để chúng tôi kết nối bạn với những cơ hội đỉnh cao và đồng hành trên mọi chặng đường sự
+                                nghiệp. </p>
                         </div>
                     </div>
                 </div>
@@ -93,9 +91,8 @@
                             <i class="icon-params"></i>
                         </div>
                         <div class="fh5co-text">
-                            <h3>Expertise</h3>
-                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
-                                there live the blind texts. </p>
+                            <h3>Tương lai trong tầm tay bạn!</h3>
+                            <p>Duyệt qua hàng ngàn công việc, chọn ngay một cơ hội và biến giấc mơ thành hiện thực. </p>
                         </div>
                     </div>
                 </div>
@@ -120,24 +117,6 @@
                         </div>
                     </div>
                 @endforeach
-            </div>
-        </div>
-
-        <div id="get-in-touch">
-            <div class="fh5co-narrow-content">
-                <div class="row">
-                    <div class="col-md-4 animate-box" data-animate-effect="fadeInLeft">
-                        <h1 class="fh5co-heading-colored">Get in touch</h1>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
-                        <p class="fh5co-lead">Separated they live in Bookmarksgrove right at the coast of the Semantics, a
-                            large language ocean.</p>
-                        <p><a href="#" class="btn btn-primary">Learn More</a></p>
-                    </div>
-
-                </div>
             </div>
         </div>
     </div>

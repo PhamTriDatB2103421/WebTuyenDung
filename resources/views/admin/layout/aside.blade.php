@@ -5,7 +5,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="mx-3 sidebar-brand-text">SB Admin <sup>2</sup></div>
+        <div class="mx-3 sidebar-brand-text">DQQ'Code</div>
     </a>
 
     <!-- Divider -->
@@ -15,7 +15,7 @@
     <li class="nav-item active">
         <a class="nav-link" href="{{ route('admin.pages.index') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Điều khiển</span></a>
+            <span>Giới thiệu</span></a>
     </li>
 
     <!-- Divider -->

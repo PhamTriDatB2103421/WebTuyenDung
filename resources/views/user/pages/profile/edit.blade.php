@@ -1,6 +1,6 @@
 @extends('user_layout')
 @section('title')
-    <title>Trang chủ</title>
+    <title>Cập nhật thông tin</title>
 @endsection
 @section('user_content')
     <div id="fh5co-main">
