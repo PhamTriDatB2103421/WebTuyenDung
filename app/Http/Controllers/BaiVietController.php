@@ -108,7 +108,7 @@ class BaiVietController extends Controller
 
     public function nop($idu, $idbv)
     {
-        $nguoiUngTuyen = NguoiUngTuyen::where('user_id', $idu);
+        $nguoiUngTuyen = NguoiUngTuyen::where('user_id', $idu)->get();
         if (! $nguoiUngTuyen) {
             return redirect()->route('loivcl')->with('error', 'Hồ sơ cá nhân chưa có không tồn tại.');
         }
