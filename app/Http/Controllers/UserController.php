@@ -73,7 +73,7 @@ class UserController extends Controller
             ]);
 
             // Trả về thông báo thành công
-            return redirect()->back()->with('error', 'Đã tạo tài khoản thành công');
+            return redirect()->route('login')->with('error', 'Đã tạo tài khoản thành công');
         } else {
             // Trả về thông báo lỗi
             return redirect()->back()->with('error', 'Tài khoản đã tồn tại');
