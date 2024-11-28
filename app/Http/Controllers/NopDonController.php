@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\DonUngTuyen;
+use App\Models\NguoiUngTuyen;
 use App\Models\TrangThai;
 use Illuminate\Http\Request;
 
@@ -34,7 +35,8 @@ class NopDonController extends Controller
     }
     public function user_list($id)
     {
-        $dons = DonUngTuyen::where('nguoiUt_id', $id)->get();
+        $nguoiUngTuyen = NguoiUngTuyen::where('user_id', $id)->first();
+        $dons = DonUngTuyen::where('nguoiUt_id', $nguoiUngTuyen->id)->get();
         if ($dons) {
             return view('user.pages.don.list', compact('dons'));
         } else {
