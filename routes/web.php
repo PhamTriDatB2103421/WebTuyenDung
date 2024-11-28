@@ -28,6 +28,7 @@ Route::get('/hoso/{id}', [NopDonController::class, 'user_list'])->name('user.don
 Route::get('/profile/{id}', [UserController::class, 'show'])->name('user.profile');
 
 Route::get('/info_create', [UserController::class, 'concacloiquai'])->name('loivcl');
+
 Route::post('/profile/store', [UserController::class, 'profile_store'])->name('user.profile.store');
 
 // Chỉnh sửa hồ sơ người dùng

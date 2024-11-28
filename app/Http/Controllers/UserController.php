@@ -136,7 +136,7 @@ class UserController extends Controller
                 'sodienthoai' => $request->sdt,
                 'user_id' => $user->id,
             ]);
-            return redirect()->back()->with('message', 'Thêm mới người dùng thành công!');
+            return redirect()->route('user.profile', Auth::id())->with('message', 'Thêm mới người dùng thành công!');
         } catch (\Illuminate\Database\QueryException $e) {
             if ($e->getCode() == 23000) {
                 return redirect()->back()->withErrors(['error' => 'Tên đăng nhập đã tồn tại!']);
