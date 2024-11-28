@@ -114,7 +114,7 @@ class BaiVietController extends Controller
         }
         // Kiểm tra xem vị trí tuyển dụng (bài viết) có tồn tại không
         $baiViet = BaiViet::find($idbv);
-        if ($baiViet->isEmpty()) {
+        if (!$baiViet) {
             return redirect()->back()->with('error', 'Vị trí tuyển dụng không tồn tại.');
         }
         $vitriTuyenDung = $baiViet->viTriTuyenDung->tenvitri;

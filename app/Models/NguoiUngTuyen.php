@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -8,6 +9,7 @@ class NguoiUngTuyen extends Model
     protected $table = 'nguoi_ung_tuyen';
 
     protected $fillable = [
+        'id',
         'hoten',
         'ngaysinh',
         'gioitinh',
@@ -27,4 +29,3 @@ class NguoiUngTuyen extends Model
         return $this->hasMany(DonUngTuyen::class, 'nguoiUt_id', 'id');
     }
 }
-
