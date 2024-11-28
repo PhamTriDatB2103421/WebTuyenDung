@@ -108,15 +108,19 @@ class BaiVietController extends Controller
 
     public function nop($idu, $idbv)
     {
-        $nguoiUngTuyen = NguoiUngTuyen::where('user_id', $idu)->get();
-        if ($nguoiUngTuyen->isEmpty()) {
-            return redirect()->route('loivcl')->with('error', 'Hồ sơ cá nhân chưa có không tồn tại.');
+        // Lấy bản ghi NguoiUngTuyen theo user_id
+        $nguoiUngTuyen = NguoiUngTuyen::where('user_id', $idu)->first(); // Lấy bản ghi đầu tiên
+
+        if (!$nguoiUngTuyen) {
+            return redirect()->route('loivcl')->with('error', 'Hồ sơ cá nhân không tồn tại.');
         }
+
         // Kiểm tra xem vị trí tuyển dụng (bài viết) có tồn tại không
         $baiViet = BaiViet::find($idbv);
         if (!$baiViet) {
             return redirect()->back()->with('error', 'Vị trí tuyển dụng không tồn tại.');
         }
+
         $vitriTuyenDung = $baiViet->viTriTuyenDung->tenvitri;
         $mota = $baiViet->viTriTuyenDung->mota;
         $yeucau = $baiViet->viTriTuyenDung->yeucau;
@@ -125,11 +129,12 @@ class BaiVietController extends Controller
         $donUngTuyen = DonUngTuyen::create([
             'vitri_id' => $baiViet->viTriTuyenDung->id,
             'trangthai_id' => 3,
-            'nguoiUt_id' => $nguoiUngTuyen->id,
-            'ngay_nop_don' => Carbon::now(),
-            'ngay_cap_nhat' => Carbon::now(),
+            'nguoiUt_id' => $nguoiUngTuyen->id, // Lấy id từ bản ghi NguoiUngTuyen
+            'ngay_nop_don' => \Carbon\Carbon::now(),
+            'ngay_cap_nhat' => \Carbon\Carbon::now(),
             'ghichu' => 'Ứng tuyển cho vị trí: ' . $vitriTuyenDung . '. Mô tả: ' . $mota . '. Yêu cầu: ' . $yeucau,
         ]);
+
         if ($donUngTuyen) {
             return redirect()->back()
                 ->with('success', 'Đơn ứng tuyển của bạn đã được gửi thành công!');
@@ -137,6 +142,7 @@ class BaiVietController extends Controller
             return redirect()->back()->with('error', 'Có lỗi khi gửi đơn ứng tuyển. Vui lòng thử lại!');
         }
     }
+
 
     public function user_list()
     {
