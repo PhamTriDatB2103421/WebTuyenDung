@@ -125,7 +125,7 @@ class BaiVietController extends Controller
         $donUngTuyen = DonUngTuyen::create([
             'vitri_id' => $baiViet->viTriTuyenDung->id,
             'trangthai_id' => 3,
-            'nguoiUt_id' => $idu,
+            'nguoiUt_id' => $nguoiUngTuyen->id,
             'ngay_nop_don' => Carbon::now(),
             'ngay_cap_nhat' => Carbon::now(),
             'ghichu' => 'Ứng tuyển cho vị trí: ' . $vitriTuyenDung . '. Mô tả: ' . $mota . '. Yêu cầu: ' . $yeucau,
